@@ -11,6 +11,13 @@ public class BenfordsLaw {
         try {
 
             float[] results = loadSalesData();
+
+            boolean fraud = checkForFraud(results);
+            if (fraud == false)
+                System.out.println("Fraud likely did not occur.");
+            else
+                System.out.println("Fraud likely did occur.");
+
             generateSalesDataFile(results);
 
 
@@ -91,9 +98,17 @@ public class BenfordsLaw {
 
     }
 
+    public static boolean checkForFraud(float[] salesDataPercent) {
+
+        if (salesDataPercent[0] >= 29 && salesDataPercent[0] <= 32)
+            return false; // fraud likely DID NOT occur
+        return true; // fraud likely DID occur
+
+    }
+
     public static void generateSalesDataFile(float[] salesDataPercent) {
 
-        // ensure the customerCollectionData string object has a value.
+        // Ensure the salesDataPercent array has a value.
         if (salesDataPercent == null) {
             System.out.print("There is no sales data in that file. ");
             return;
