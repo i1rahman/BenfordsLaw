@@ -1,10 +1,28 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.*;
-import java.text.DecimalFormat;
 
+/**
+ * Date: May 12, 2021
+ * Teacher: Mr. Ho
+ * <p>
+ * This program takes sales data and determines whether or not fraud has occured using Benford's law.
+ * Sales data is passed in as a .csv file and then a graph of the distribution of the leading digit
+ * is displayed. Following that, a message is printed that displays whether fraud likely occured. At the
+ * end, a .csv file is saved which contains the distribution of leading digits as a percentage, rounded
+ * to 1 decimal place. 
+ * 
+ * @author Ibrahim Rahman <341169092@gapps.yrdsb.ca>
+ * @author Tony Cheng <>
+ */
 public class BenfordsLaw {
 
+    /**
+     * Main method. Allows user to enter the filepath of their sales data and check for fraud within 
+     * their sales data. 
+     * 
+     * @param args Command line arguments will be ignored
+     */
     public static void main (String[] args) {
 
     
@@ -31,6 +49,14 @@ public class BenfordsLaw {
     
     }
 
+    /**
+     * This method loads the sale data from the sales.csv file. It takes the first digit of the sales data
+     * and tallies the occurences in an array. Then, the number of leading digits is divided by the total to
+     * determine their percentage of a total and saved to an array, which is returned.
+     *  
+     * @return Array of floats containing the percentage of first digits in the sales data. 
+     * @throws FileNotFoundException
+     */
     public static float[] loadSalesData () throws FileNotFoundException {
         
 
@@ -98,6 +124,13 @@ public class BenfordsLaw {
 
     }
 
+    /**
+     * This method checks the sales data percent array for fraud using Benford's law. 
+     * 
+     * @param salesDataPercent Array of sales data as a percent of the leading digit. 
+     * @return <code> false </code> if fraud likely did not occur; <code> true </code> if
+     *         fraud likely did occur. 
+     */
     public static boolean checkForFraud(float[] salesDataPercent) {
 
         if (salesDataPercent[0] >= 29 && salesDataPercent[0] <= 32)
@@ -106,6 +139,12 @@ public class BenfordsLaw {
 
     }
 
+    /**
+     * This method generates the sales data file containing the distribution of leading digits as a percentage, rounded
+     * to 1 decimal place. This is outputted in the same directory as the program. The outputted file is named "results.csv".
+     * 
+     * @param salesDataPercent Array of sales data as a percent of the leading digit.
+     */
     public static void generateSalesDataFile(float[] salesDataPercent) {
 
         // Ensure the salesDataPercent array has a value.
