@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.*;
+import java.text.DecimalFormat;
 
 public class BenfordsLaw {
 
@@ -115,8 +116,10 @@ public class BenfordsLaw {
         // Used a resource block so we don't have to close the PrintWriter. 
         try (PrintWriter printWriter = new PrintWriter(outFile)) {
             
+            double roundedSalesPercent = 0;
             for (int i = 0; i < salesDataPercent.length; i++) {
-                printWriter.println((i+1) + "," + salesDataPercent[i]);
+                roundedSalesPercent = Math.round(salesDataPercent[i] * 10)/10.0;
+                printWriter.println((i+1) + "," + roundedSalesPercent + "%");
             }
     
         }
