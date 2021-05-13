@@ -49,7 +49,7 @@ public class BenfordsLaw {
                     System.out.println ("Sales data loaded from " + salesPath);
                 } 
                 
-                // Analyze the sales data, generate the chart, and export the results to the screen and file.
+                // Analyze the sales data, generate the chart, display the results to the terminal, and export the results to a file.
                 else if (inputOption == ANALYSIS) {
                     generateChart (salesData);
                     printNumericDisplay(salesData);
@@ -65,9 +65,7 @@ public class BenfordsLaw {
         reader.close();
     }
 
-    /**
-     * Prints the menu
-     */
+    /** Prints the menu of the Sales Analysis System. */
     public static void printMenu(){
         System.out.print("\nSales Analysis System\n"
         .concat("1. Load sales data CSV\n")
@@ -95,6 +93,7 @@ public class BenfordsLaw {
                 input = ".\\" + defaultFilename; 
             }
             
+            // Creates a new File instance by converting the given pathname string into an abstract pathname.
             File inFile = new File(input);
 
             // check to see if the file exists. If it exists, return the filename. If it doesn't, allow re-entry.
@@ -147,11 +146,23 @@ public class BenfordsLaw {
         // While there's another line, this will continue to get the leading digit and assign it's integer value to an array,
         // then keep the total amount of all digits. 
         while (scnr.hasNextLine()) {
+
+            // gets the line of sales data. 
             line =  scnr.nextLine();
+
+            // splits the line using a delimiter, leaving the sales number. 
             number = line.split(",[ ]*")[1];
+
+            // Gets the 0th index of the number (because it's the first digit).
             digit = number.charAt(0);
+
+            // gets the numberic value of the char digit.
             digit_int = Character.getNumericValue(digit);
+
+            // places the int in the sales data array.
             salesData[digit_int-1] += 1;
+
+            // adds 1 to the total.
             total += 1;
         }
 

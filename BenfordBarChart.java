@@ -23,7 +23,7 @@ import org.jfree.chart.ui.TextAnchor;
 public class BenfordBarChart extends ApplicationFrame {
    
    /**
-    * Constructor for the BenfordBarChart class. This constructor will create an instance of the barchar object,
+    * Constructor for the BenfordBarChart class. This constructor will create an instance of the barchart object,
     * set the size, labels, and dataset.
     *
     * @param chartTitle Chart title and program title for the bar chart. 
